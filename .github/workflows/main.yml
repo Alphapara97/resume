@@ -1,0 +1,36 @@
+name: Page Build and Deployment
+
+on:
+  push:
+    branches:
+      - main  # Set the branch where you want to trigger the workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+  report-build-status:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Report Build Status
+      run: |
+        # Add commands to report build status, if applicable
+        # This could be the step where you run tests and report the results
+
+  deploy:
+    needs: [build, report-build-status]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        branch: main  # Branch to deploy
+        folder: .     # Folder to deploy
+        repository_name: resume  # Name of the repository
