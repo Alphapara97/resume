@@ -1,2 +1,2 @@
 # resume
-Latest resume -August 2023
+Latest resume -November 2023
